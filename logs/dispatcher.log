@@ -1,0 +1,19 @@
+2023-09-08 19:43:05 DEBUG TelegramBot:30 - /start
+2023-09-08 19:47:09 DEBUG TelegramBot:32 - /start
+2023-09-08 19:49:15 DEBUG TelegramBot:32 - /start
+2023-09-08 20:44:57 DEBUG UpdateProducerImpl:13 - /start
+2023-09-08 20:45:47 ERROR UpdateController:38 - Received unsupported message typeUpdate(updateId=52408073, message=null, inlineQuery=null, chosenInlineQuery=null, callbackQuery=null, editedMessage=Message(messageId=14, from=User(id=1082249767, firstName=John, isBot=false, lastName=Titor, userName=johntitor2000, languageCode=ru, canJoinGroups=null, canReadAllGroupMessages=null, supportInlineQueries=null), date=1694195096, chat=Chat(id=1082249767, type=private, title=null, firstName=John, lastName=Titor, userName=johntitor2000, allMembersAreAdministrators=null, photo=null, description=null, inviteLink=null, pinnedMessage=null, stickerSetName=null, canSetStickerSet=null, permissions=null, slowModeDelay=null, bio=null, linkedChatId=null, location=null, messageAutoDeleteTime=null, allowSavingContent=null, hasPrivateForwards=null), forwardFrom=null, forwardFromChat=null, forwardDate=null, text=/star, entities=[MessageEntity(type=bot_command, offset=0, length=5, url=null, user=null, language=null, text=/star)], captionEntities=null, audio=null, document=null, photo=null, sticker=null, video=null, contact=null, location=null, venue=null, animation=null, pinnedMessage=null, newChatMembers=[], leftChatMember=null, newChatTitle=null, newChatPhoto=null, deleteChatPhoto=null, groupchatCreated=null, replyToMessage=null, voice=null, caption=null, superGroupCreated=null, channelChatCreated=null, migrateToChatId=null, migrateFromChatId=null, editDate=1694195117, game=null, forwardFromMessageId=null, invoice=null, successfulPayment=null, videoNote=null, authorSignature=null, forwardSignature=null, mediaGroupId=null, connectedWebsite=null, passportData=null, forwardSenderName=null, poll=null, replyMarkup=null, dice=null, viaBot=null, senderChat=null, proximityAlertTriggered=null, messageAutoDeleteTimerChanged=null, voiceChatStarted=null, voiceChatEnded=null, voiceChatParticipantsInvited=null, voiceChatScheduled=null, isAutomaticForward=null, canBeForwarded=null), channelPost=null, editedChannelPost=null, shippingQuery=null, preCheckoutQuery=null, poll=null, pollAnswer=null, myChatMember=null, chatMember=null, chatJoinRequest=null)
+2023-09-08 21:19:25 DEBUG UpdateProducerImpl:21 - hello
+2023-09-08 21:45:09 DEBUG UpdateProducerImpl:21 - wdawd
+2023-09-08 21:46:47 DEBUG UpdateProducerImpl:21 - ww
+2023-09-08 21:47:43 DEBUG UpdateProducerImpl:21 - ww
+2023-09-08 21:52:05 DEBUG UpdateProducerImpl:21 - w
+2023-09-08 21:52:17 DEBUG UpdateProducerImpl:21 - wwwwwww
+2023-09-08 21:53:57 DEBUG AnswerConsumerImpl:25 - Sending message Hello from node
+2023-09-08 21:53:57 DEBUG AnswerConsumerImpl:25 - Sending message Hello from node
+2023-09-08 21:53:57 DEBUG AnswerConsumerImpl:25 - Sending message Hello from node
+2023-09-08 21:53:57 DEBUG AnswerConsumerImpl:25 - Sending message Hello from node
+2023-09-08 21:53:57 DEBUG AnswerConsumerImpl:25 - Sending message Hello from node
+2023-09-08 21:53:58 DEBUG AnswerConsumerImpl:25 - Sending message Hello from node
+2023-09-08 23:16:28 DEBUG UpdateProducerImpl:21 - ww
+2023-09-08 23:16:28 DEBUG AnswerConsumerImpl:25 - Sending message Hello from node
