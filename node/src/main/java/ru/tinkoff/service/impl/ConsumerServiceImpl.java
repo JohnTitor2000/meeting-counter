@@ -8,6 +8,7 @@ import ru.tinkoff.service.ConsumerService;
 import ru.tinkoff.service.MainService;
 import ru.tinkoff.service.ProducerService;
 
+import static ru.tinkoff.RabbitQueue.CALLBACK_QUERY_UPDATE;
 import static ru.tinkoff.RabbitQueue.TEXT_MESSAGE_UPDATE;
 
 @Log4j
@@ -28,6 +29,17 @@ public class ConsumerServiceImpl implements ConsumerService {
     @RabbitListener(queues = TEXT_MESSAGE_UPDATE)
     public void consumeTextMessageUpdates(Update update) {
         log.debug("NODE: Text message is received.");
+        mainService.processTextMessage(update);
+    }
+
+    @Override
+    @RabbitListener(queues = CALLBACK_QUERY_UPDATE)
+    public void consumeCallBackQueryUpdates(Update update) {
+        log.debug("NODE: callback message is received.");
+        if (update.hasCallbackQuery()) {
+            mainService.processCallbackQuery(update);
+            return;
+        }
         mainService.processTextMessage(update);
     }
 }

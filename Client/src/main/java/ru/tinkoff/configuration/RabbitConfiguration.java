@@ -6,8 +6,7 @@ import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static ru.tinkoff.RabbitQueue.ANSWER_MESSAGE;
-import static ru.tinkoff.RabbitQueue.TEXT_MESSAGE_UPDATE;
+import static ru.tinkoff.RabbitQueue.*;
 
 
 @Configuration
@@ -26,5 +25,10 @@ public class RabbitConfiguration {
     @Bean
     public Queue answerMessageQueue() {
         return new Queue(ANSWER_MESSAGE);
+    }
+
+    @Bean
+    public Queue callbackQueryQueue() {
+        return new Queue(CALLBACK_QUERY_UPDATE);
     }
 }

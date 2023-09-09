@@ -7,7 +7,7 @@
 		<module>common-rabbitmq</module>
         <module>node</module>
         <module>common-jpa</module>
-    </modules>
+	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

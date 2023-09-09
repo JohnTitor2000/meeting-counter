@@ -2,7 +2,7 @@ package ru.tinkoff.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.TypeDef;
+import ru.tinkoff.entity.enums.UserState;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -25,4 +25,6 @@ public class AppUser {
     private String firstName;
     private String lastName;
     private String userName;
+    @Enumerated(EnumType.STRING)
+    private UserState state = UserState.WAITING;
 }

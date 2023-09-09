@@ -5,4 +5,6 @@ import ru.tinkoff.entity.AppUser;
 
 public interface AppUserDao extends JpaRepository<AppUser, Long> {
     AppUser findAppUserByTelegramUserId(Long id);
+
+    boolean findIsGettingDataByTelegramUserId(Long telegramUserId);
 }
