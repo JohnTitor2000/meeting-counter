@@ -5,19 +5,15 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import ru.tinkoff.dao.AppUserDao;
 import ru.tinkoff.dao.RawDataDao;
 import ru.tinkoff.entity.AppUser;
 import ru.tinkoff.entity.RawData;
 import ru.tinkoff.entity.enums.UserState;
+import ru.tinkoff.mappers.AppUserMapper;
 import ru.tinkoff.service.MainService;
 import ru.tinkoff.service.ProducerService;
 import ru.tinkoff.service.utils.KeyBoardUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Service
@@ -28,13 +24,15 @@ public class MainServiceImpl implements MainService {
     private final AppUserDao appUserDao;
     private final MeetingService meetingService;
     private final KeyBoardUtils keyBoardUtils;
+    private final AppUserMapper appUserMapper;
 
-    public MainServiceImpl(RawDataDao rawDataDao, ProducerService producerService, AppUserDao appUserDao, MeetingService meetingService, KeyBoardUtils keyBoardUtils) {
+    public MainServiceImpl(RawDataDao rawDataDao, ProducerService producerService, AppUserDao appUserDao, MeetingService meetingService, KeyBoardUtils keyBoardUtils, AppUserMapper appUserMapper) {
         this.rawDataDao = rawDataDao;
         this.producerService = producerService;
         this.appUserDao = appUserDao;
         this.meetingService = meetingService;
         this.keyBoardUtils = keyBoardUtils;
+        this.appUserMapper = appUserMapper;
     }
 
     @Override
@@ -52,19 +50,19 @@ public class MainServiceImpl implements MainService {
 
     @Override
     public void processCallbackQuery(Update update) {
-        meetingService.noteProduct(update);
+        AppUser appUser = appUserDao.findAppUserByTelegramUserId(update.getCallbackQuery().getFrom().getId());
+        if (appUser.getState().equals(UserState.PRODUCE_MEETING_PRODUCT)) {
+            meetingService.noteProduct(update);
+        } else if (appUser.getState().equals(UserState.PRODUCE_OFFERS)){
+            meetingService.noteOffers(update);
+        }
     }
 
     private AppUser findOrSaveAppUser(Update update) {
         User telegramUser = update.getMessage().getFrom();
         AppUser persistentAppUser = appUserDao.findAppUserByTelegramUserId(telegramUser.getId());
         if (persistentAppUser == null) {
-            AppUser transientAppUser = AppUser.builder()
-                    .telegramUserId(telegramUser.getId())
-                    .userName(telegramUser.getUserName())
-                    .firstName(telegramUser.getFirstName())
-                    .lastName(telegramUser.getLastName())
-                    .build();
+            AppUser transientAppUser = appUserMapper.toAppUser(update);
             SendMessage sendMessage = new SendMessage();
             sendMessage.setChatId(update.getMessage().getChatId());
             sendMessage.setText("Привет! Я помогу тебе эффективно вести учет твоих встреч. \n\n" +
