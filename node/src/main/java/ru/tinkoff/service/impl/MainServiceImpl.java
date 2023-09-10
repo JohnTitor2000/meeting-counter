@@ -14,6 +14,7 @@ import ru.tinkoff.entity.RawData;
 import ru.tinkoff.entity.enums.UserState;
 import ru.tinkoff.service.MainService;
 import ru.tinkoff.service.ProducerService;
+import ru.tinkoff.service.utils.KeyBoardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +27,14 @@ public class MainServiceImpl implements MainService {
     private final ProducerService producerService;
     private final AppUserDao appUserDao;
     private final MeetingService meetingService;
+    private final KeyBoardUtils keyBoardUtils;
 
-    public MainServiceImpl(RawDataDao rawDataDao, ProducerService producerService, AppUserDao appUserDao, MeetingService meetingService) {
+    public MainServiceImpl(RawDataDao rawDataDao, ProducerService producerService, AppUserDao appUserDao, MeetingService meetingService, KeyBoardUtils keyBoardUtils) {
         this.rawDataDao = rawDataDao;
         this.producerService = producerService;
         this.appUserDao = appUserDao;
         this.meetingService = meetingService;
+        this.keyBoardUtils = keyBoardUtils;
     }
 
     @Override
@@ -71,14 +74,7 @@ public class MainServiceImpl implements MainService {
                     "• Создание отчетов: Ты можешь получить статистику по своей работе за определенный отрезок времени или за конкретный день, включая процент успешно проведенных встреч и геймификацию. \n\n" +
                     "• Хранение id встреч: Я также храню id встреч, которые ты провел, у тебя всегда будет возможность быстро получить id встречи, которыю нужно оспорить в поддержке.\n\n" +
                     "К сожелению я не могу помочь тебе расчитать вознаграждение, так как эта информация является корпоративной тайной. Но ты можешь посчитать его сам, используя отчет.");
-            ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-            List<KeyboardRow> keyboardRows = new ArrayList<>();
-            KeyboardRow row = new KeyboardRow();
-            row.add("Записать встречу.");
-            row.add("Получить статистику.");
-            keyboardRows.add(row);
-            replyKeyboardMarkup.setKeyboard(keyboardRows);
-            sendMessage.setReplyMarkup(replyKeyboardMarkup);
+            sendMessage.setReplyMarkup(keyBoardUtils.createReplyKeyboardMarkup(2, new String[]{"Записать встречу.", "Получить статистику."}));
             producerService.producerAnswer(sendMessage);
             return appUserDao.save(transientAppUser);
         }

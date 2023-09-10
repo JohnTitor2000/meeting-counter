@@ -12,6 +12,7 @@ import ru.tinkoff.entity.Meeting;
 import ru.tinkoff.entity.enums.Product;
 import ru.tinkoff.entity.enums.UserState;
 import ru.tinkoff.service.ProducerService;
+import ru.tinkoff.service.utils.KeyBoardUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +25,13 @@ public class MeetingService {
     private final AppUserDao appUserDao;
     private final ProducerService producerService;
     private final MeetingDao meetingDao;
+    private final KeyBoardUtils keyBoardUtils;
 
-    public MeetingService(AppUserDao appUserDao, ProducerService producerService, MeetingDao meetingDao) {
+    public MeetingService(AppUserDao appUserDao, ProducerService producerService, MeetingDao meetingDao, KeyBoardUtils keyBoardUtils) {
         this.appUserDao = appUserDao;
         this.producerService = producerService;
         this.meetingDao = meetingDao;
+        this.keyBoardUtils = keyBoardUtils;
     }
 
     public void noteMeeting(Update update) {
@@ -46,23 +49,12 @@ public class MeetingService {
                 meeting.setUser(appUser);
                 meetingDao.save(meeting);
                 sendMessage.setText("Записал id - " + idАctivity + "\nТеперь выбери продукт по которому была встреча.");
-                InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-                List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
-                List<InlineKeyboardButton> rowInLine = new ArrayList<>();
-                InlineKeyboardButton DKbutton = new InlineKeyboardButton();
-                DKbutton.setText("ДК Первичка");
-                DKbutton.setCallbackData("DK_FIRST_BUTTON");
-                InlineKeyboardButton KKbutton = new InlineKeyboardButton();
-                KKbutton.setText("KК Первичка");
-                KKbutton.setCallbackData("KK_FIRST_BUTTON");
-                rowInLine.add(KKbutton);
-                rowInLine.add(DKbutton);
 
-                rowsInLine.add(rowInLine);
-
-                inlineKeyboardMarkup.setKeyboard(rowsInLine);
-
-                sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+                sendMessage.setReplyMarkup(keyBoardUtils.createInlineKeyboardButtons(2, 3,
+                                                                                    new String[]{"ДК Первичка", "ДК Перевыпуск", "ДК доп",
+                                                                                                 "КК Первичка", "КК перевыпуск", "KK доп"},
+                                                                                    new String[]{"DK_FIRST_BUTTON", "DK_REISSUE", "DK_ADDITIONAL",
+                                                                                                 "KK_FIRST", "KK_REISSUE", "KK_ADDITIONAL"}));
                 appUser.setState(UserState.PRODUCE_MEETING_PRODUCT);
                 appUserDao.save(appUser);
                 producerService.producerAnswer(sendMessage);

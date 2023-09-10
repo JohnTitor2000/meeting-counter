@@ -47069,3 +47069,13 @@
 2023-09-09 20:41:36 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
 2023-09-09 20:41:36 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
 2023-09-09 20:41:36 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
+2023-09-09 20:44:38 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
+2023-09-09 20:44:40 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
+2023-09-09 20:44:53 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
+2023-09-09 20:44:56 DEBUG ConsumerServiceImpl:38 - NODE: callback message is received.
+2023-09-09 20:44:57 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
+2023-09-09 20:45:00 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
+2023-09-09 20:45:18 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
+2023-09-09 20:45:47 DEBUG ConsumerServiceImpl:38 - NODE: callback message is received.
+2023-09-10 20:11:31 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
+2023-09-10 20:11:40 DEBUG ConsumerServiceImpl:31 - NODE: Text message is received.
