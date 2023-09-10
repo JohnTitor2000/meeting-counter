@@ -2,7 +2,9 @@ package ru.tinkoff.service.utils;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,5 +26,17 @@ public class KeyBoardUtils {
         }
         inlineKeyboardMarkup.setKeyboard(rowsInLine);
         return inlineKeyboardMarkup;
+    }
+    
+    public ReplyKeyboardMarkup createReplyKeyboardMarkup(int buttonInRows, String[] buttonsText) {
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+        List<KeyboardRow> keyboardRows = new ArrayList<>();
+        KeyboardRow row = new KeyboardRow();
+        for (int i = 0; i < buttonInRows; i++) {
+            row.add(buttonsText[i]);
+        }
+        keyboardRows.add(row);
+        replyKeyboardMarkup.setKeyboard(keyboardRows);
+        return replyKeyboardMarkup;
     }
 }
