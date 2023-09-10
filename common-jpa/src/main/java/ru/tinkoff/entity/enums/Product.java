@@ -1,7 +1,12 @@
 package ru.tinkoff.entity.enums;
 
 public enum Product {
-    FIRST_DEBET_CARD,
-    SIM_CARD,
-    CREDIT_CARD
+
+    KK_FIRST,
+    DK_FIRST,
+    DK_REISSUE,
+    DK_ADDITIONAL,
+    KK_REISSUE,
+    KK_ADDITIONAL,
+    SIM_CARD
 }

@@ -18,8 +18,8 @@ public class KeyBoardUtils {
             List<InlineKeyboardButton> rowInLine = new ArrayList<>();
             for (int j = 1; j <= buttonInRows; j++) {
                 InlineKeyboardButton button = new InlineKeyboardButton();
-                button.setText(buttonsText[i * j - 1]);
-                button.setCallbackData(callbackData[i * j - 1]);
+                button.setText(buttonsText[(i * j) - 1]);
+                button.setCallbackData(callbackData[(i * j) - 1]);
                 rowInLine.add(button);
             }
             rowsInLine.add(rowInLine);
